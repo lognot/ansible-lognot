@@ -1,0 +1,25 @@
+lognot:
+  notification:
+    recipients: {{ mail_recipients }}
+
+# Files to scan. Mandatory configuration
+
+files:
+# ANSIBLE MANAGED FILES BLOCK
+
+# Email configuration
+spring:
+  mail:
+    host: {{ mail_host }}
+    port: {{ mail_port }}
+    username: {{ mail_username }}
+    password: {{ mail_password}}
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+
+logging:
+  level:
+    root: WARN
+    io.lognot: INFO
+    io.lognot.LognotApplication: INFO

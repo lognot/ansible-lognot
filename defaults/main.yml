@@ -1,0 +1,4 @@
+---
+url_archive_zip: https://github.com/lognot/lognot/files/1591248/lognot-bin.zip
+
+destination_folder: "{{ ansible_env.HOME }}"

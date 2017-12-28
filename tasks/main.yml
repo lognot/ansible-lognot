@@ -1,0 +1,21 @@
+---
+- name: Create target directory
+  file: path={{ destination_folder }} state=directory
+
+- name: Extract archive {{ url_archive_zip }}
+  unarchive: src={{ url_archive_zip }} dest={{ destination_folder }} remote_src=yes
+
+- name: Configure lognot.yml
+  template: src=lognot.yml dest={{ destination_folder }}/lognot/lognot.yml
+
+- name: Setup log files in lognot.yml
+  blockinfile:
+    dest: "{{ destination_folder }}/lognot/lognot.yml"
+    block: |
+      - key: {{ item.key }}
+        path: {{ item.path }}
+        period: {{ item.period }}
+        regEx: {{item.regEx }}
+    marker: "# {mark} {{ item.key }}"
+    insertafter: "# ANSIBLE MANAGED FILES BLOCK"
+  with_items: "{{ files }}"
