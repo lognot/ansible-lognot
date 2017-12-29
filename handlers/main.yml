@@ -1,0 +1,7 @@
+---
+
+- name: Restart lognot
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: lognot

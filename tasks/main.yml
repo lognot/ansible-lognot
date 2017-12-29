@@ -7,6 +7,7 @@
 
 - name: Configure lognot.yml
   template: src=lognot.yml dest={{ destination_folder }}/lognot/lognot.yml
+  notify: Restart lognot
 
 - name: Setup log files in lognot.yml
   blockinfile:
@@ -22,3 +23,6 @@
 
 - name: Configure lognot.service
   template: src=lognot.service dest={{ destination_folder }}/lognot/lognot.service
+
+- name: Install service
+  file: src={{ destination_folder }}/lognot/lognot.service dest=/etc/systemd/system/lognot.service state=link
