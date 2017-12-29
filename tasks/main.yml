@@ -26,3 +26,4 @@
 
 - name: Install service
   file: src={{ destination_folder }}/lognot/lognot.service dest=/etc/systemd/system/lognot.service state=link
+  become: true
