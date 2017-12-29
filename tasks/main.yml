@@ -19,3 +19,6 @@
     marker: "# {mark} {{ item.key }}"
     insertafter: "# ANSIBLE MANAGED FILES BLOCK"
   with_items: "{{ files }}"
+
+- name: Configure lognot.service
+  template: src=lognot.service dest={{ destination_folder }}/lognot/lognot.service

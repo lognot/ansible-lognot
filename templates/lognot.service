@@ -1,0 +1,12 @@
+[Unit]
+Description=lognot service
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+WorkingDirectory={{ destination_folder }}/lognot
+ExecStart={{ destination_folder }}/lognot/lognot.sh -f lognot.yml
+StandardOutput=journal
+SyslogIdentifier=lognot
+
+[Install]
+WantedBy=multi-user.target
